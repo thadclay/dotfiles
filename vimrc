@@ -1,65 +1,81 @@
-set nocompatible
-filetype plugin indent on
-syntax on
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-set laststatus=2
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
-" Vundle bundle manager
-Bundle 'gmarik/vundle'
-
-" After Command-T installs, make sure you run:
-"   cd ~/.vim/"Bundle/Command-T/ruby/command-t/
-"   ruby extconf.rb
-"   make
-Bundle 'Command-T'
+Bundle 'kien/ctrlp.vim'
 " EasyMotion
-Bundle 'EasyMotion'
+Plugin 'EasyMotion'
 " Buffer explorer
-Bundle 'bufexplorer.zip'
+Plugin 'bufexplorer.zip'
 " Most recently used buffer
-Bundle 'bufmru.vim'
+Plugin 'bufmru.vim'
 " Change surrounding characters
-Bundle 'surround.vim'
+Plugin 'surround.vim'
 " Text alignment
-Bundle 'Tabular'
+Plugin 'Tabular'
 " Code snipets
-Bundle 'snipMate'
+Plugin 'snipMate'
 " Fast code commenting
-Bundle 'The-NERD-Commenter'
+Plugin 'The-NERD-Commenter'
 " Project folder
-Bundle 'The-NERD-tree'
+Plugin 'The-NERD-tree'
 " Stylus
-Bundle 'vim-stylus'
+Plugin 'vim-stylus'
 " list functions
-Bundle 'functionlist.vim'
+Plugin 'functionlist.vim'
 " JSHint
-Bundle 'walm/jshint.vim.git'
+Plugin 'walm/jshint.vim.git'
 " DeleteTrailingWhitespace
-Bundle 'vim-scripts/DeleteTrailingWhitespace.git'
+Plugin 'vim-scripts/DeleteTrailingWhitespace.git'
 " Lightline status bar
-"Bundle 'itchyny/lightline.vim'
+"Plugin 'itchyny/lightline.vim'
 " Git Gutter
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 " Airline status bar
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 " Trailing Whitespace
-Bundle 'bronson/vim-trailing-whitespace'
+Plugin 'bronson/vim-trailing-whitespace'
 " Autoclose
-Bundle 'Townk/vim-autoclose'
+Plugin 'Townk/vim-autoclose'
 
 " -------- Syntax Coloring and indents -------
 
 " Javascript text hilighting
-Bundle 'pangloss/vim-javascript.git'
+Plugin 'pangloss/vim-javascript.git'
 " Cucumber
-Bundle 'cucumber.zip'
+Plugin 'cucumber.zip'
 " Jade
-Bundle 'digitaltoad/vim-jade.git'
+Plugin 'digitaltoad/vim-jade.git'
 " SnipMate
-Bundle 'garbas/vim-snipmate'
+Plugin 'garbas/vim-snipmate'
+Bundle 'jelera/vim-javascript-syntax'
+" Indent Guides
+Bundle 'nathanaelkane/vim-indent-guides'
+" Dockerfile text highlighting
+Bundle 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 set ar
 set expandtab
@@ -123,9 +139,6 @@ let maplocalleader = ","
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e ~/.vimrc<cr>
-map <Leader>ga :CommandTFlush<CR>\|:CommandT<CR>
-map <Leader>gf :CommandTFlush<CR>\|:CommandT %%<CR>
-map <Leader>gl :CommandTFlush<CR>\|:CommandT lib<CR>
 map <Leader>h :set invhls<CR>
 noremap <Leader>i :set list!<CR>
 imap jj <c-c>
@@ -146,8 +159,16 @@ let g:bufExplorerDefaultHelp=1
 let g:bufExplorerShowDirectories=0
 let g:bufExplorerShowRelativePath=1
 
-" command-t
-let g:CommandTMaxFiles=10000
+" ctrlp stuff
+nnoremap <leader>ga :CtrlP<CR>
+nnoremap <leader>f :CtrlP<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>m :CtrlPMRUFiles<CR>
+nnoremap <leader>t :CtrlPTag<CR>
+
+set t_Co=256
+syntax on
+set background=dark
 
 " Gui Setup *******************************************************************
 if has("gui_running")
