@@ -140,6 +140,8 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e ~/.vimrc<cr>
 map <Leader>h :set invhls<CR>
 noremap <Leader>i :set list!<CR>
 imap jj <c-c>
+nmap \l :setlocal number!<CR>
+nmap \o :set paste!<CR>
 nmap k gk
 nmap j gj
 "noremap <Up> <nop>
